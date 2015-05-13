@@ -22,20 +22,8 @@ $sans:             ff-meta-web-pro, verdana, helvetica, "helvetica neue", sans-s
 
 $purple:           #21233D;
 $teal-light:       #38B7BB;
-$teal-darK:        #2A898C;
+$teal-dark:        #2A898C;
 $red:              #FF4834;
-
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
-}
-/* @include media-query(max-width) {} */
-
-@mixin calc($property, $expression) {
-  #{$property}: calc(#{$expression});
-}
-/* @include calc(property, value) */
 
 @import
   "typography",
