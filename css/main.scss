@@ -1,0 +1,44 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+/***************************************************/
+/*                 CSS GUIDELINES:                 */
+/*                                                 */
+/*  Avoid shorthand usage of the font properties   */
+/*     Always use relative units -- 1em = 20px     */
+/*    Do align all values across all properties    */
+/*          Build from smallest screen up          */
+/*          No "max-width" media queries           */
+/*  Specify groupings before individual elements   */
+/*    Use the appropriate file for declarations    */
+/*                                                 */
+/***************************************************/
+
+@charset "utf-8";
+
+$serif:            chaparral-pro, georgia, serif;
+$sans:             ff-meta-web-pro, verdana, helvetica, "helvetica neue", sans-serif;
+
+$purple:           #21233D;
+$teal-light:       #38B7BB;
+$teal-darK:        #2A898C;
+$red:              #FF4834;
+
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+/* @include media-query(max-width) {} */
+
+@mixin calc($property, $expression) {
+  #{$property}: calc(#{$expression});
+}
+/* @include calc(property, value) */
+
+@import
+  "typography",
+  "layout",
+  "objects"
+;
