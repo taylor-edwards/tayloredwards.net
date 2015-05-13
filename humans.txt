@@ -1,0 +1,12 @@
+/* TEAM */
+Designer, Developer: Taylor Edwards
+Site:                www.tayloredwards.net
+Twitter:             @Rumudiez
+Location:            Seattle, Washington
+                            
+/* SITE */    
+Last update: 2015/05/13
+Standards:   HTML5, CSS3, ES5
+Components:  Jekyll, SCSS
+Software:    Sublime Text 2, Jekyll
+Host:        Github Pages
