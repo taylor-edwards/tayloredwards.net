@@ -8,5 +8,9 @@ url:          "http://www.tayloredwards.net"
 github:       "https://github.com/Rumudiez/"
 twitter:      "https://twitter.com/Rumudiez/"
 
+collections:
+  portfolio:
+    output: true
+
 # Build settings
 markdown: kramdown
