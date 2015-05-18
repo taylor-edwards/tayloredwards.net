@@ -3,7 +3,7 @@ img.inline {
 }
 .video,
 .frame {
-  margin: 22px auto 0;
+  margin: 11px auto 0;
   max-width: 1280px;
 }
 /* intrinsic iframe resizing */
@@ -22,6 +22,24 @@ img.inline {
 .frame {
   border-top: 4px solid $teal-light;
   border-bottom: 4px solid $teal-light;
+}
+.image--cover {
+  display: inline-block;
+  position: relative;
+  &:after {
+    background: $red;
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity $period;
+    width: 100%;
+  }
+  &:hover:after {
+    opacity: .25;
+  }
 }
 .email-label:after {
   content: "email";
