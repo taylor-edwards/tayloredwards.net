@@ -8,6 +8,7 @@ url:          "http://www.tayloredwards.net"
 github:       "https://github.com/Rumudiez/"
 twitter:      "https://twitter.com/Rumudiez/"
 
+assets:       /assets/
 collections:
   portfolio:
     output: true

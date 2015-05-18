@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-{% if page.cover %}
+{% if page.image %}
   <figure class="frame">
-    <img src="{{ site.baseurl }}img/{{ page.cover }}">
+    <img src="{{ site.assets }}img/{{ page.image }}">
   </figure>
 {% endif %}
 {% if page.video %}
@@ -11,6 +11,6 @@ layout: default
     <iframe src="https://player.vimeo.com/video/{{ page.video }}" width="1280" height="720" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   </figure>
 {% endif %}
-<article>
+<div class="row">
   {{ content }}
-</article>
+</div>
