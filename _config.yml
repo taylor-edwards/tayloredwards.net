@@ -9,6 +9,8 @@ github:       "https://github.com/Rumudiez/"
 twitter:      "https://twitter.com/Rumudiez/"
 
 assets:       /assets/
+permalink:    /everydays/:year/:month/:title
+
 collections:
   portfolio:
     output: true
