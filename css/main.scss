@@ -11,7 +11,7 @@ $teal-light:       #38B7BB;
 $teal-dark:        #2A898C;
 $red:              #FF4834;
 
-$period:           150ms;
+$period:           200ms;
 
 @mixin calc($property, $expression) {
   #{$property}: calc(#{$expression});
