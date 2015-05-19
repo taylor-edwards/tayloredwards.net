@@ -36,19 +36,20 @@ img {
   display: inline-block;
   vertical-align: middle;
 }
-@media screen and (max-width: 479px) {
-  .inline,
+.intrinsic-wide {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+@media screen and (max-width: 567px) {
   .inline {
     display: block;
-    margin: auto;
+    margin: 0;
     padding: 6px;
     text-align: center;
   }
   img.inline {
     margin: 6px auto 11px !important;
-  }
-  header {
-    text-align: left;
   }
 }
 @media screen and (min-width: 568px) {

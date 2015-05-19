@@ -2,42 +2,38 @@
 layout: default
 permalink: /
 ---
-<div class="row">
-  <article class="column-3">
-    <h3>Portfolio</h3>
-    <ul>
-      {% assign sortedPosts = site.portfolio | sort:"order" %}
-      {% for post in sortedPosts %}
-        <li>
-          <a href="{{ post.url }}" class="quiet">
-            <h2>{{ post.title }}</h2>
-            <div class="image--cover">
-              {% if post.image %}
-                <img src="{{ site.assets }}covers/{{ post.image|split:"."|first }}.jpg">
-              {% else %}
-                <img src="{{ site.assets }}covers/{{ post.cover }}">
-              {% endif %}
-            </div>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </article>
-  <article class="column-1">
-    <h3>Everydays</h3>
-    <ul>
-      {% for post in site.posts|limit:5 %}
-        <li>
-          <a href="{{ post.url }}" class="quiet">
-            <h2>{{ post.title }}</h2>
-            <div class="image--cover">
-              <img src="{{ site.assets }}everydays/{{ post.title }}.jpg">
-            </div>
-          </a>
-          <br>
-        </li>
-      {% endfor %}
-    </ul>
-    <p>View all posts in <a href="{{ site.baseurl }}archive/" title="Everydays project archive">the archive</a>.</p>
-  </article>
-</div>
+<section id="portfolio">
+  <ul class="row">
+    {% assign sortedPosts = site.portfolio | sort:"order" %}
+    {% for post in sortedPosts %}
+      <li class="column-2 clickbox">
+        <a href="{{ post.url }}">
+          <h2>{{ post.title }}</h2>
+            {% if post.image %}
+              <div class="image--cover" style="background:url('{{ site.assets }}covers/{{ post.image|split:"."|first }}.jpg')">
+              </div>
+            {% else %}
+              <div class="image--cover" style="background:url('{{ site.assets }}covers/{{ post.cover }}')">
+              </div>
+            {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+<section id="everydays">
+  <h3>Everydays</h3>
+  <div>View all posts in <a href="{{ site.baseurl }}archive/" title="Everydays project archive">the archive</a>.</div>
+  <ul class="row">
+    {% for post in site.posts|limit:8 %}
+      <li class="column-1 clickbox clickbox--mini">
+        <a href="{{ post.url }}">
+          <h2>{{ post.title }}</h2>
+          <div class="image--cover" style="background:url('{{ site.assets }}everydays/{{ post.title }}.jpg')">
+          </div>
+        </a>
+        <br>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

@@ -2,12 +2,12 @@
 layout: default
 ---
 {% if page.image %}
-  <figure class="frame">
+  <figure class="feature feature--image">
     <img src="{{ site.assets }}img/{{ page.image }}">
   </figure>
 {% endif %}
 {% if page.video %}
-  <figure class="video">
+  <figure class="feature feature--video">
     <iframe src="https://player.vimeo.com/video/{{ page.video }}" width="1280" height="720" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   </figure>
 {% endif %}
