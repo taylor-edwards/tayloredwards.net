@@ -41,17 +41,6 @@ img {
   padding-bottom: 56.25%;
   position: relative;
 }
-@media screen and (max-width: 567px) {
-  .inline {
-    display: block;
-    margin: 0;
-    padding: 6px;
-    text-align: center;
-  }
-  img.inline {
-    margin: 6px auto 11px !important;
-  }
-}
 @media screen and (min-width: 568px) {
   .column-1,
   .column-2,
@@ -71,6 +60,20 @@ img {
   }
   .space {
     margin-top: 66px;
+  }
+}
+@media screen and (max-width: 767px) {
+  span.right {
+    float: none;
+  }
+  .inline {
+    display: block;
+    margin: 0;
+    padding: 6px;
+    text-align: center;
+  }
+  img.inline {
+    margin: 6px auto 11px !important;
   }
 }
 @media screen and (min-width: 768px) {
