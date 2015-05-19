@@ -1,4 +1,15 @@
 ---
 layout: default
 ---
-{{ content }}
+<figure class="feature feature--video">
+  <iframe src="https://player.vimeo.com/video/{{ page.video }}?autoplay=1&loop=1" width="1280" height="720" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</figure>
+<div class="row">
+  <article class="column-2">
+    <h1>{{ page.title }}</h1>
+    {{ content }}
+  </article>
+  <article class="column-2 space">
+    <p>This piece is part of my <strong>Everydays</strong> project, for which I'm making something everyday under the themes of motion design and 3D modeling.</p>
+  </article>
+</div>

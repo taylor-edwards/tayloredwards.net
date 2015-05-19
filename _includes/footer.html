@@ -1,0 +1,25 @@
+<article class="column-2">
+  <h3>Portfolio</h3>
+  <nav class="doublelist">
+    {% if site.portfolio %}
+      <ul>
+        {% assign sortedPosts = site.portfolio | sort:"order" %}
+        {% for post in sortedPosts %}
+          <li><a href="{{ post.url }}" title="Project page for {{ post.title }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </nav>
+  <p>© Taylor Edwards {{ site.time|date:"%Y" }}</p>
+</article>
+<article class="column-2">
+  <h3>Recent Everydays</h3>
+  <nav class="doublelist">
+    <ul>
+      {% for post in site.posts|limit:6 %}
+        <li><a href="{{ post.url }}" title="{{ post.title }}: {{ post.date|date:"%d %b %Y" }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <p>View all posts in <a href="{{ site.baseurl }}archive/" title="Everydays project archive">the archive</a></p>
+</article>

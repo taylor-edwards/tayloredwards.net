@@ -1,0 +1,35 @@
+---
+layout: default
+title: Everydays Archive
+permalink: /archive/
+---
+<div class="row">
+  <article class="column-2">
+    <h2>Everydays</h2>
+    <p>These pieces are part of my everydays project, for which I'm making something every[week]day under the themes of motion design and 3D modeling.</p>
+  </article>
+</div>
+<div class="row">
+  {% for post in site.posts %}
+    {% capture cyear %}{{ post.date|date:"%Y" }}{% endcapture %}
+    {% if cyear != nyear %}
+      <article class="column-2">
+        <h1>{{ cyear }}</h1>
+        {% for post in site.posts %}
+          {% capture cmonth %}{{ post.date|date:"%B" }}{% endcapture %}
+          {% assign year = post.date|date:"%Y" %}
+          {% if year == cyear %}
+            {% if cmonth != nmonth %}
+              <h3>{{ cmonth }}</h3>
+            {% endif %}
+            {% capture nmonth %}{{ cmonth }}{% endcapture %}
+            <ul>
+              <li><strong>{{ post.date | date: "%-d" }}</strong> <a href="{{ post.url }}">{{ post.title }}</a></li>
+            </ul>
+          {% endif %}
+        {% endfor %}
+      </article>
+    {% endif %}
+    {% capture nyear %}{{ cyear }}{% endcapture %}
+  {% endfor %}
+</div>

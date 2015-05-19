@@ -1,12 +1,19 @@
 # Site settings
 title:        Taylor Edwards
 description:  >
-              Taylor Edwards is a UX/UI designer in Seattle.l
+              Taylor Edwards is a UX/UI designer in Seattle.
 baseurl:      /
 url:          "http://www.tayloredwards.net"
 
 github:       "https://github.com/Rumudiez/"
 twitter:      "https://twitter.com/Rumudiez/"
+
+assets:       /assets/
+permalink:    /everydays/:year/:month/:title
+
+collections:
+  portfolio:
+    output: true
 
 # Build settings
 markdown: kramdown

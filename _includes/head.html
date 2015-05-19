@@ -10,7 +10,7 @@
 
   <link rel="author" href="humans.txt">
 
-  <title>Taylor Edwards</title>
+  <title>{{ site.title }}{% if page.title %} – {{ page.title }}{% endif %}</title>
   <link rel="home" href="http://www.tayloredwards.net">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 

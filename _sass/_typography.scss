@@ -9,6 +9,9 @@ h2,
 h3 {
   margin: 18px 0 4px;
 }
+p {
+  max-width: 35em;
+}
 p,
 ul {
   margin: 0 0 8px;
@@ -55,15 +58,28 @@ a,
 a:link {
   color: $teal-light;
   text-decoration: none;
+  transition: color $period;
   white-space: nowrap;
 }
 a:active,
 a:visited {
   color: $teal-dark;
 }
+a.quiet {
+  color: $purple;
+}
 a:hover,
 a:focus {
   color: $red;
   box-shadow: none;
   outline: none;
+}
+.doublelist {
+  -moz-columns: 2;
+  -webkit-columns: 2;
+  columns: 2;
+}
+.right {
+  float: right;
+  text-align: right !important;
 }
