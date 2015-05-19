@@ -3,7 +3,12 @@ layout: default
 title: Everydays Archive
 permalink: /archive/
 ---
-
+<div class="row">
+  <article class="column-2">
+    <h2>Everydays</h2>
+    <p>These pieces are part of my everydays project, for which I'm making something every[week]day under the themes of motion design and 3D modeling.</p>
+  </article>
+</div>
 <div class="row">
   {% for post in site.posts %}
     {% capture cyear %}{{ post.date|date:"%Y" }}{% endcapture %}
