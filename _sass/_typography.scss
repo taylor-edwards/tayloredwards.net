@@ -74,6 +74,11 @@ a:focus {
   box-shadow: none;
   outline: none;
 }
+.doublelist {
+  -moz-columns: 2;
+  -webkit-columns: 2;
+  columns: 2;
+}
 .right {
   float: right;
   text-align: right !important;
