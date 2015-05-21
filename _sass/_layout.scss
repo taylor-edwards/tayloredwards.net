@@ -59,6 +59,9 @@ img {
   }
   .column-1 {
     width: 25%;
+    &.preserve {
+      width: 25%;
+    }
   }
   .column-2 {
     width: 50%;
