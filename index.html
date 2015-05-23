@@ -31,7 +31,7 @@ permalink: /
       <li class="column-1 clickbox clickbox--mini">
         <a href="{{ post.url }}">
           <h2>{{ post.title }}</h2>
-          <div class="image--cover" style="background:url('{{ site.assets }}everydays/{{ post.title|downcase }}.jpg')">
+          <div class="image--cover" style="background:url('{{ site.assets }}everydays/{{ post.title|downcase|split:" " }}.jpg')">
           </div>
         </a>
         <br>
