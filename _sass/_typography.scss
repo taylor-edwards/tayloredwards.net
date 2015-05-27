@@ -1,4 +1,5 @@
 body {
+  background: $background;
   color: $purple;
   font: 16px/22px $sans normal;
   margin: 0 0 22px;
@@ -59,7 +60,7 @@ a:link {
   color: $teal-light;
   text-decoration: none;
   transition: color $period;
-  white-space: nowrap;
+  @extend .restrict;
 }
 a:active,
 a:visited {
@@ -82,4 +83,9 @@ a:focus {
 .right {
   float: right;
   text-align: right !important;
+}
+.restrict {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

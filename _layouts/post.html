@@ -1,9 +1,24 @@
 ---
 layout: default
 ---
-<figure class="feature feature--video">
-  <iframe src="https://player.vimeo.com/video/{{ page.video }}?autoplay=1&loop=1" width="1280" height="720" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-</figure>
+{% if page.image %}
+  <figure class="feature feature--image">
+    <img src="{{ site.assets }}everydays/{{ page.image }}">
+  </figure>
+{% endif %}
+{% if page.video %}
+  <figure class="feature feature--video">
+    <iframe src="https://player.vimeo.com/video/{{ page.video }}?autoplay=1&loop=1" width="1280" height="720" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </figure>
+{% endif %}
+{% if page.codepen %}
+  <figure class="feature feature--code">
+    <iframe src="http://s.codepen.io/Rumudiez/debug/{{ page.codepen }}" width="1280" height="720" frameborder="0"></iframe>
+    <figcaption>
+      <a href="http://codepen.io/Rumudiez/pen/{{ page.codepen }}">View on Codepen</a>
+    </figcaption>
+  </figure>
+{% endif %}
 <div class="row">
   <article class="column-2">
     <h1>{{ page.title }}</h1>

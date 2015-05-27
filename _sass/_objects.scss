@@ -5,10 +5,12 @@ img.inline {
   margin: 14px auto 0; /* extra 3px for optical alignment */
   max-width: 1280px;
 }
-.feature--video {
+.feature--video,
+.feature--code {
   @extend .intrinsic-wide;
 }
-.feature--video iframe {
+.feature--video iframe,
+.feature--code iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -18,6 +20,14 @@ img.inline {
 .feature--image {
   border-top: 4px solid $teal-light;
   border-bottom: 4px solid $teal-light;
+}
+.feature--code figcaption {
+  background: $background;
+  border-radius: 0 10px 0 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px 15px;
+  position: absolute;
 }
 a:hover .image--cover {
   &:after {
@@ -31,15 +41,15 @@ a:hover .image--cover {
     box-shadow: 0 0 11px rgba(33,35,61,.2);
   }
   h2 {
-    background: #fff;
+    background: $background;
     border: 4px solid;
     bottom: 12%;
     left: 9%;
     max-width: 50%;
     padding: 10px 15px;
     position: absolute;
-    white-space: normal;
     z-index: 100;
+    @extend .restrict;
   }
   .image--cover {
     background-repeat: no-repeat !important;
@@ -70,7 +80,8 @@ a:hover .image--cover {
   }
 }
 @media screen and (min-width: 1280px) {
-  .feature--video {
+  .feature--video,
+  .feature--code {
     padding-bottom: 720px;
   }
   .feature--image {
