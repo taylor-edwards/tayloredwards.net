@@ -3,7 +3,7 @@ layout: default
 ---
 {% if page.image %}
   <figure class="feature feature--image">
-    <img src="{{ site.assets }}everydays/{{ page.image }}">
+    <img src="{{ site.assets }}everydays/{{ page.date | date: "%y%m%d" }}/{{ page.title }}_1280-720.jpg">
   </figure>
 {% endif %}
 {% if page.video %}
@@ -28,3 +28,23 @@ layout: default
     <p>This piece is part of my <strong>Everydays</strong> project, for which I'm making something everyday under the themes of motion design and 3D modeling.</p>
   </article>
 </div>
+{% if page.image %}
+  <div class="row">
+    <article class="column-2">
+      <h3>Downloads</h3>
+      <ul>
+        <li><a href="{{ site.assets }}everydays/{{ page.date | date: "%y%m%d" }}/{{ page.title }}_1280-720.jpg" download="{{ page.title }}_1280-720.jpg">1280&#215;720px</a></li>
+        <li><a href="{{ site.assets }}everydays/{{ page.date | date: "%y%m%d" }}/{{ page.title }}_1920-1080.jpg" download="{{ page.title }}_1920-1080.jpg">1920&#215;1080px</a></li>
+        <li><a href="{{ site.assets }}everydays/{{ page.date | date: "%y%m%d" }}/{{ page.title }}_2560-1440.jpg" download="{{ page.title }}_2560-1440.jpg">2560&#215;1440px</a></li>
+      </ul>
+    </article>
+    <article class="column-2">
+      <h3>&nbsp;</h3>
+      <ul>
+        <li><a href="{{ site.assets }}everydays/{{ page.date | date: "%y%m%d" }}/{{ page.title }}_1440-900.jpg" download="{{ page.title }}_1440-900.jpg">1440&#215;900px</a></li>
+        <li><a href="{{ site.assets }}everydays/{{ page.date | date: "%y%m%d" }}/{{ page.title }}_1680-1050.jpg" download="{{ page.title }}_1680-1050.jpg">1680&#215;1050px</a></li>
+        <li><a href="{{ site.assets }}everydays/{{ page.date | date: "%y%m%d" }}/{{ page.title }}_1920-1200.jpg" download="{{ page.title }}_1920-1200.jpg">1920&#215;1200px</a></li>
+      </ul>
+    </article>  
+  </div>
+{% endif %}
