@@ -85,6 +85,14 @@ th {
                     {% assign lastDay = currentDay|plus:1 %}
                   {% endif %}
                 {% endfor %}
+              {% assign monthLength = months[currentMonth] %}
+              {% for i in (lastDay..monthLength) %}
+                {% case i %}
+                  {% when 8 or 15 or 22 or 29 %}
+                    </tr><tr>
+                {% endcase %}
+                <td>{{ i }}</td>
+              {% endfor %}
               </tr>
           {% endif %}
           </table>
