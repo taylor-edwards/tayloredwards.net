@@ -10,26 +10,86 @@ permalink: /everydays/
   </article>
 </div>
 <div class="row">
-  {% for post in site.posts %}
-    {% capture cyear %}{{ post.date|date:"%Y" }}{% endcapture %}
-    {% if cyear != nyear %}
-      <article class="column-2">
-        <h1>{{ cyear }}</h1>
-        {% for post in site.posts %}
-          {% capture cmonth %}{{ post.date|date:"%B" }}{% endcapture %}
-          {% assign year = post.date|date:"%Y" %}
-          {% if year == cyear %}
-            {% if cmonth != nmonth %}
-              <h3>{{ cmonth }}</h3>
-            {% endif %}
-            {% capture nmonth %}{{ cmonth }}{% endcapture %}
-            <ul>
-              <li><strong>{{ post.date | date: "%-d" }}</strong> <a href="{{ post.url }}">{{ post.title }}</a></li>
-            </ul>
+  {% for post in site.posts reversed %}
+    {% assign currentYear = post.date|date:"%Y" %}
+    {% if currentYear != lastYear %}
+      <h1>{{ currentYear }}</h1>
+      {% for post in site.posts reversed %}
+        {% assign year = post.date|date:"%Y" %}
+        {% assign currentMonth = post.date|date:"%B" %}
+        {% if year == currentYear %}
+          {% if currentMonth != lastMonth %}
+            <h3>{{ currentMonth }}</h3>
+            <table>
+              <tr>
+                <th>Su</th>
+                <th>M</th>
+                <th>Tu</th>
+                <th>W</th>
+                <th>Th</th>
+                <th>F</th>
+                <th>Sa</th>
+              </tr>
+              <tr>
+                {% assign lastDay = null %}
+                {% for post in site.posts reversed %}
+                  {% assign month = post.date|date:"%B" %}
+                  {% assign currentDay = post.date|date:"%-d" %}
+                  {% assign previousDay = currentDay|minus:1 %}
+                  {% if month == currentMonth %}
+                    {% if currentDay != lastDay %}
+                      {% if lastDay == null %}
+                        {% for i in (1..previousDay) %}
+                          {% case i %}
+                            {% when 8 %}
+                              </tr><tr>
+                            {% when 15 %}
+                              </tr><tr>
+                            {% when 22 %}
+                              </tr><tr>
+                            {% when 29 %}
+                              </tr><tr>
+                          {% endcase %}
+                          <td>{{ i }}</td>
+                        {% endfor %}       
+                        <td class="highlight" data-title="{{ post.title }}">{{ currentDay }}</td>                
+                      {% else %}
+                        {% for i in (lastDay..previousDay) %}
+                          {% case i %}
+                            {% when 8 %}
+                              </tr><tr>
+                            {% when 15 %}
+                              </tr><tr>
+                            {% when 22 %}
+                              </tr><tr>
+                            {% when 29 %}
+                              </tr><tr>
+                          {% endcase %}
+                          <td>{{ i }}</td>
+                        {% endfor %}
+                        {% case currentDay %}
+                          {% when "8" %}
+                            </tr><tr>
+                          {% when "15" %}
+                            </tr><tr>
+                          {% when "22" %}
+                            </tr><tr>
+                          {% when "29" %}
+                            </tr><tr>
+                        {% endcase %}
+                        <td class="highlight" data-title="{{ post.title }}">{{ currentDay }}</td>
+                      {% endif %}
+                    {% endif %}
+                    {% assign lastDay = currentDay|plus:1 %}
+                  {% endif %}
+                {% endfor %}
+              </tr>
           {% endif %}
-        {% endfor %}
-      </article>
+          </table>
+        {% endif %}
+        {% assign lastMonth = currentMonth %}
+      {% endfor %}
     {% endif %}
-    {% capture nyear %}{{ cyear }}{% endcapture %}
+    {% assign lastYear = currentYear %}
   {% endfor %}
 </div>
