@@ -3,6 +3,27 @@ layout: default
 title: Everydays Archive
 permalink: /everydays/
 ---
+<style>
+table {
+  margin: auto;
+}
+th,
+td {
+  width: 1.33em;
+}
+th {
+  font-size: 1em;
+  font-weight: normal;
+}
+.highlight {
+  background: #38B7BB;
+  border-radius: 50%;
+  color: white;
+}
+</style>
+
+{% assign months = "0|31|29|31|30|31|30|31|31|30|31|30|31"|split:"|" %}
+
 <div class="row">
   <article class="column-2">
     <h2>Everydays</h2>
@@ -16,10 +37,10 @@ permalink: /everydays/
       <h1>{{ currentYear }}</h1>
       {% for post in site.posts reversed %}
         {% assign year = post.date|date:"%Y" %}
-        {% assign currentMonth = post.date|date:"%B" %}
+        {% assign currentMonth = post.date|date:"%m"|plus:0 %}
         {% if year == currentYear %}
           {% if currentMonth != lastMonth %}
-            <h3>{{ currentMonth }}</h3>
+            <h3>{{ post.date|date:"%B" }}</h3>
             <table>
               <tr>
                 <th>Su</th>
@@ -33,7 +54,7 @@ permalink: /everydays/
               <tr>
                 {% assign lastDay = null %}
                 {% for post in site.posts reversed %}
-                  {% assign month = post.date|date:"%B" %}
+                  {% assign month = post.date|date:"%m"|plus:0 %}
                   {% assign currentDay = post.date|date:"%-d" %}
                   {% assign previousDay = currentDay|minus:1 %}
                   {% if month == currentMonth %}
@@ -41,44 +62,25 @@ permalink: /everydays/
                       {% if lastDay == null %}
                         {% for i in (1..previousDay) %}
                           {% case i %}
-                            {% when 8 %}
-                              </tr><tr>
-                            {% when 15 %}
-                              </tr><tr>
-                            {% when 22 %}
-                              </tr><tr>
-                            {% when 29 %}
+                            {% when 8 or 15 or 22 or 29 %}
                               </tr><tr>
                           {% endcase %}
                           <td>{{ i }}</td>
-                        {% endfor %}       
-                        <td class="highlight" data-title="{{ post.title }}">{{ currentDay }}</td>                
+                        {% endfor %}             
                       {% else %}
                         {% for i in (lastDay..previousDay) %}
                           {% case i %}
-                            {% when 8 %}
-                              </tr><tr>
-                            {% when 15 %}
-                              </tr><tr>
-                            {% when 22 %}
-                              </tr><tr>
-                            {% when 29 %}
+                            {% when 8 or 15 or 22 or 29 %}
                               </tr><tr>
                           {% endcase %}
                           <td>{{ i }}</td>
                         {% endfor %}
-                        {% case currentDay %}
-                          {% when "8" %}
-                            </tr><tr>
-                          {% when "15" %}
-                            </tr><tr>
-                          {% when "22" %}
-                            </tr><tr>
-                          {% when "29" %}
-                            </tr><tr>
-                        {% endcase %}
-                        <td class="highlight" data-title="{{ post.title }}">{{ currentDay }}</td>
                       {% endif %}
+                      {% case currentDay %}
+                        {% when "8" or "15" or "22" or "29" %}
+                          </tr><tr>
+                      {% endcase %}   
+                      <td class="highlight" data-title="{{ post.title }}">{{ currentDay }}</td>   
                     {% endif %}
                     {% assign lastDay = currentDay|plus:1 %}
                   {% endif %}
