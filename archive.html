@@ -160,6 +160,20 @@ th {
                   {% comment %} write the date cell {% endcomment %}
                   <td>{{ i }}</td>
                 {% endfor %}
+
+                {% comment %} check if the month is Feb {% endcomment %}
+                {% if currentMonth == 2 %}
+                  {% comment %} check if it's a leap year {% endcomment %}
+                  {% assign leapYear1 = currentYear|modulo:4   %}{% comment %} yes a leap year {% endcomment %}
+                  {% assign leapYear2 = currentYear|modulo:100 %}{% comment %} not a leap year {% endcomment %}
+                  {% assign leapYear3 = currentYear|modulo:400 %}{% comment %} yes a leap year {% endcomment %}
+                  {% if leapYear1 == 0 and leapYear2 != 0 or leapYear3 == 0 %}
+                    {% if lastDay < 29 %}
+                      {% comment %} write an extra date cell for the 29th {% endcomment %}
+                      <td>29</td>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
                 {% comment %} close the table's last row {% endcomment %}
                 </tr>
               {% comment %} close the month's table {% endcomment %}
