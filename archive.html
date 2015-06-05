@@ -22,6 +22,7 @@ th {
 }
 </style>
 
+{% comment %} "array" of month lengths for later reference {% endcomment %}
 {% assign months = "0|31|29|31|30|31|30|31|31|30|31|30|31"|split:"|" %}
 
 <div class="row">
@@ -31,22 +32,22 @@ th {
   </article>
 </div>
 <div class="row">
-  <!-- cycle all posts in reverse for years to display -->
+  {% comment %} cycle all posts in reverse for years to display {% endcomment %}
   {% for post in site.posts reversed %}
     {% assign currentYear = post.date|date:"%Y" %}
-    <!-- if new year -->
+    {% comment %} if new year {% endcomment %}
     {% if currentYear != lastYear %}
-      <!-- display the year -->
+      {% comment %} display the year {% endcomment %}
       <h1>{{ currentYear }}</h1>
-      <!-- cycle all posts in reverse for months to display -->
+      {% comment %} cycle all posts in reverse for months to display {% endcomment %}
       {% for post in site.posts reversed %}
         {% assign year = post.date|date:"%Y" %}
         {% assign currentMonth = post.date|date:"%m"|plus:0 %}
-        <!-- only display posts from within the current year -->
+        {% comment %} only display posts from within the current year {% endcomment %}
         {% if year == currentYear %}
-          <!-- if new month -->
+          {% comment %} if new month {% endcomment %}
           {% if currentMonth != lastMonth %}
-            <!-- display the month -->
+            {% comment %} display the month {% endcomment %}
             <h3>{{ post.date|date:"%B" }}</h3>
             <table>
               <tr>
@@ -59,84 +60,105 @@ th {
                 <th>Sa</th>
               </tr>
               <tr>
-                <!-- reset for lastDay to trigger 'new month' if block -->
+                {% comment %} reset for lastDay to trigger 'new month' if block {% endcomment %}
                 {% assign lastDay = null %}
+                {% comment %} for use in limiting week length to 7 days {% endcomment %}
                 {% assign weekCycle = -1 %}
-                <!-- cycle through all posts for days to display -->
+                {% comment %} cycle through all posts for days to display {% endcomment %}
                 {% for post in site.posts reversed %}
                   {% assign month = post.date|date:"%m"|plus:0 %}
                   {% assign currentDay = post.date|date:"%-d" %}
                   {% assign previousDay = currentDay|minus:1 %}
-                  <!-- only display posts from within the current month -->
+                  {% comment %} only display posts from within the current month {% endcomment %}
                   {% if month == currentMonth %}
-                    <!-- if new month -->
+                    {% comment %} if new month {% endcomment %}
                     {% if currentDay != lastDay %}
-                      <!-- if first post of the month -->
+                      {% comment %} if first post of the month {% endcomment %}
                       {% if lastDay == null %}
-                        <!-- (day of week) - ( (day of month)modulo(7) ) + 1 = (first of month) -->
+                        {% comment %} (day of week) - ( (day of month)modulo(7) ) + 1 = (first of month) {% endcomment %}
                         {% assign day    = post.date|date:"%-d" %}
                         {% assign mod    = day|modulo:7 %}
                         {% assign target = post.date|date:"%w" %}
                         {% assign target = target|minus:mod %}
-                        <!-- convert negative references to positive -->
+                        {% comment %} convert negative references to positive {% endcomment %}
                         {% if target < -1 %}
                           {% assign target = target|plus:7 %}
                         {% endif %}
 
+                        {% comment %} add padding to the beginning of the month {% endcomment %}
+                        {% comment %} ^^^ make calendars' weekdays accurate ^^^ {% endcomment %}
                         {% for i in (0..target) %}
+                          {% comment %} limit week-length to 7 days {% endcomment %}
                           {% assign weekCycle = weekCycle|plus:1 %}
                           <td>&nbsp;</td>
                         {% endfor %}
 
+                        {% comment %} write date cells from the 1st up until the first post of the month {% endcomment %}
                         {% for i in (1..previousDay) %}
+                          {% comment %} limit week-length to 7 days {% endcomment %}
                           {% if weekCycle >= 6 %}
                             {% assign weekCycle = 0 %}
                             <tr></tr>
                           {% else %}
                             {% assign weekCycle = weekCycle|plus:1 %}
                           {% endif %}
+                          {% comment %} write the date cell {% endcomment %}
                           <td>{{ i }}</td>
                         {% endfor %}
-                      <!-- if previous posts in month -->
+
+                      {% comment %} if previous posts in month {% endcomment %}
                       {% else %}
+                        {% comment %} write date cells between the previous post and the current post {% endcomment %}
                         {% for i in (lastDay..previousDay) %}
+                          {% comment %} limit week-length to 7 days {% endcomment %}
                           {% if weekCycle >= 6 %}
                             {% assign weekCycle = 0 %}
                             <tr></tr>
                           {% else %}
                             {% assign weekCycle = weekCycle|plus:1 %}
                           {% endif %}
+                          {% comment %} write the date cell {% endcomment %}
                           <td>{{ i }}</td>
                         {% endfor %}
                       {% endif %}
+                      {% comment %} limit week-length to 7 days {% endcomment %}
                       {% if weekCycle >= 6 %}
                         {% assign weekCycle = 0 %}
                         <tr></tr>
                       {% else %}
                         {% assign weekCycle = weekCycle|plus:1 %}
                       {% endif %}
+                      {% comment %} write the post cell {% endcomment %}
                       <td class="highlight" data-title="{{ post.title }}">{{ currentDay }}</td>
                     {% endif %}
+                    {% comment %} increment lastDay for the next post's reference {% endcomment %}
                     {% assign lastDay = currentDay|plus:1 %}
                   {% endif %}
                 {% endfor %}
+              {% comment %} write date cells between the last post of the month and the end of the month {% endcomment %}
               {% assign monthLength = months[currentMonth] %}
               {% for i in (lastDay..monthLength) %}
+                {% comment %} limit week-length to 7 days {% endcomment %}
                 {% if weekCycle >= 6 %}
                   {% assign weekCycle = 0 %}
                   <tr></tr>
                 {% else %}
                   {% assign weekCycle = weekCycle|plus:1 %}
                 {% endif %}
+                {% comment %} write the date cell {% endcomment %}
                 <td>{{ i }}</td>
               {% endfor %}
+              {% comment %} close the last <tr> {% endcomment %}
               </tr>
           {% endif %}
+          {% comment %} close the month's table {% endcomment %}
           </table>
         {% endif %}
+        {% comment %} increment lastMonth for the next month's reference {% endcomment %}
         {% assign lastMonth = currentMonth %}
       {% endfor %}
     {% endif %}
+    {% comment %} increment lastYear for the next year's reference {% endcomment %}
     {% assign lastYear = currentYear %}
   {% endfor %}
 </div>
