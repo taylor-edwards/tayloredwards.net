@@ -22,6 +22,9 @@
   &.preserve {
     width: 100%;
   }
+  &:nth-child(2n+1) {
+    clear: left;
+  }
 }
 header {
   padding: 11px 0;
@@ -45,10 +48,19 @@ img {
   display: inline-block;
   vertical-align: middle;
 }
+.intrinsic-square,
 .intrinsic-wide {
   height: 0;
-  padding-bottom: 56.25%;
+  padding-top: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
   position: relative;
+}
+.intrinsic-square {
+  padding-bottom: 50%;
+}
+.intrinsic-wide {
+  padding-bottom: 56.25%;
 }
 @media screen and (min-width: 568px) {
   .column-1,
@@ -62,13 +74,28 @@ img {
     &.preserve {
       width: 25%;
     }
+    &.intrinsic-square {
+      padding-bottom: 25%;
+    }
+    &:nth-child(2n+1) {
+      clear: none;
+    }
+    &:nth-child(4n+1) {
+      clear: left;
+    }
   }
   .column-2 {
     width: 50%;
+    &.intrinsic-square {
+      padding-bottom: 50%;
+    }
   }
   .column-3,
   .column-4 {
     width: 100%;
+    &.intrinsic-square {
+      padding-bottom: 100%;
+    }
   }
   .space {
     margin-top: 66px;
@@ -97,5 +124,8 @@ img {
   }
   .column-3 {
     width: 75%;
+    &.intrinsic-square {
+      padding-bottom: 75%;
+    }
   }
 }

@@ -36,9 +36,6 @@ strong {
   font-family: $serif;
   line-height: 22px;
 }
-strong {
-  line-height: 0px;
-}
 h1 {
   font-size: 40px;
   line-height: 44px;
@@ -51,34 +48,78 @@ h3 {
   text-transform: uppercase;
   letter-spacing: .75px;
 }
+table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  cursor: pointer;
+}
+th,
+td {
+  text-align: center;
+  width: 1.375em;
+}
+th {
+  @extend strong;
+}
 ul {
   list-style: none;
   padding-left: 0;
 }
-a,
-a:link {
-  color: $teal-light;
-  text-decoration: none;
-  transition: color $period;
-  @extend .restrict;
+a {
+  &,
+  &:link {
+    color: $teal-light;
+    text-decoration: none;
+    transition: color $period;
+    @extend .restrict;
+  }
+  &:active,
+  &:visited {
+    color: $teal-dark;
+  }
+  &:hover,
+  &:focus {
+    color: $red;
+    box-shadow: none;
+    outline: none;
+  }
+  &.quiet {
+    color: $purple;
+  }
+  &.reverse {
+    display: block;
+    height: 0;
+    padding-bottom: 105%;
+    width: 105%;
+    @extend .reverse;
+    &:active,
+    &:visited {
+      background: lighten($teal-dark,10%);
+    }
+    &:hover,
+    &:focus {
+      background: $red;
+    }
+    &.quiet {
+      background: lighten($purple,10%);
+    }
+  }
 }
-a:active,
-a:visited {
-  color: $teal-dark;
-}
-a.quiet {
-  color: $purple;
-}
-a:hover,
-a:focus {
-  color: $red;
-  box-shadow: none;
-  outline: none;
+.reverse {
+  background: lighten($teal-light,10%);
+  border-radius: 1.5em;
+  color: $background;
 }
 .doublelist {
   -moz-columns: 2;
   -webkit-columns: 2;
   columns: 2;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .right {
   float: right;
@@ -88,4 +129,10 @@ a:focus {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  a.reverse {
+    padding-bottom: 110%;
+    width: 110%;
+  }
 }

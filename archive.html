@@ -3,26 +3,6 @@ layout: default
 title: Everydays Archive
 permalink: /everydays/
 ---
-<style>
-table {
-  margin: auto;
-}
-th,
-td {
-  text-align: center;
-  width: 1.375em;
-}
-th {
-  font-size: 1em;
-  font-weight: normal;
-}
-.highlight {
-  background: #38B7BB;
-  border-radius: 50%;
-  color: white;
-}
-</style>
-
 {% comment %} "array" of month lengths for later reference {% endcomment %}
 {% assign months = "0|31|28|31|30|31|30|31|31|30|31|30|31"|split:"|" %}
 
@@ -31,15 +11,23 @@ th {
     <h2>Everydays</h2>
     <p>These pieces are part of my everydays project, for which I'm making something every[week]day under the themes of motion design and 3D modeling.</p>
   </article>
+  <article class="column-2">
+    <h2>&nbsp;</h2>
+    <ul>
+      <li><a href="https://vimeo.com/rumudiez/">vimeo.com/rumudiez/</a></li>
+      <li><a href="https://soundcloud.com/rumudiez">soundcloud.com/rumudiez</a></li>
+      <li><a href="http://codepen.io/Rumudiez/">codepen.io/Rumudiez/</a></li>
+    </ul>
+  </article>
 </div>
 {% comment %} cycle all posts in reverse to display years {% endcomment %}
 {% for post in site.posts reversed %}
   {% assign currentYear = post.date|date:"%Y" %}
   {% comment %} if new year {% endcomment %}
   {% if currentYear != lastYear %}
+    {% comment %} display the year {% endcomment %}
+    <h1 class="center">{{ currentYear }}</h1>
     <div class="row">
-      {% comment %} display the year {% endcomment %}
-      <h1 class="center">{{ currentYear }}</h1>
 
       {% assign lastMonth = null %}
       {% comment %} cycle all posts in reverse to display months {% endcomment %}
@@ -52,9 +40,9 @@ th {
           {% comment %} if new month {% endcomment %}
           {% if currentMonth != lastMonth %}
             {% comment %} display the month {% endcomment %}
-            <div class="column-1 intrinsic-square">
+            <div class="column-1">
               <h3 class="center">{{ post.date|date:"%B" }}</h3>
-              <table class="calendar">
+              <table class="calendar center">
                 <tr>
                   <th>Su</th>
                   <th>M</th>
@@ -139,7 +127,7 @@ th {
                         {% endif %}
 
                         {% comment %} write the post cell {% endcomment %}
-                        <td class="highlight" data-title="{{ post.title }}">{{ currentDay }}</td>
+                        <td data-title="{{ post.title }}"><a href="{{ post.url }}" class="reverse">{{ currentDay }}</a></td>
                       {% endif %}
 
                       {% comment %} increment lastDay for the next post's reference {% endcomment %}
@@ -164,9 +152,9 @@ th {
                 {% comment %} check if the month is Feb {% endcomment %}
                 {% if currentMonth == 2 %}
                   {% comment %} check if it's a leap year {% endcomment %}
-                  {% assign leapYear1 = currentYear|modulo:4   %}{% comment %} yes a leap year {% endcomment %}
-                  {% assign leapYear2 = currentYear|modulo:100 %}{% comment %} not a leap year {% endcomment %}
-                  {% assign leapYear3 = currentYear|modulo:400 %}{% comment %} yes a leap year {% endcomment %}
+                  {% assign leapYear1 = currentYear|modulo:4   %}{% comment %} true  {% endcomment %}
+                  {% assign leapYear2 = currentYear|modulo:100 %}{% comment %} false {% endcomment %}
+                  {% assign leapYear3 = currentYear|modulo:400 %}{% comment %} true  {% endcomment %}
                   {% if leapYear1 == 0 and leapYear2 != 0 or leapYear3 == 0 %}
                     {% if lastDay < 29 %}
                       {% comment %} write an extra date cell for the 29th {% endcomment %}
@@ -174,6 +162,7 @@ th {
                     {% endif %}
                   {% endif %}
                 {% endif %}
+
                 {% comment %} close the table's last row {% endcomment %}
                 </tr>
               {% comment %} close the month's table {% endcomment %}
@@ -184,10 +173,14 @@ th {
           {% comment %} increment lastMonth for the next month's reference {% endcomment %}
           {% assign lastMonth = currentMonth %}
         {% endif %}
+
       {% endfor %}
     {% comment %} close the year's styling div {% endcomment %}
     </div>
+    {% comment %} add space manually {% endcomment %}
+    <div class="row">&nbsp;</div>
   {% endif %}
+
   {% comment %} increment lastYear for the next year's reference {% endcomment %}
   {% assign lastYear = currentYear %}
 {% endfor %}
